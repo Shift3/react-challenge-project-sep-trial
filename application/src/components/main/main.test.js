@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
+
 import Main from './main';
 
 describe('Main page', () => {
@@ -11,5 +12,9 @@ describe('Main page', () => {
                 <Main />
             </MemoryRouter>
         );
+        
+        expect(screen.getByRole('button')).toBeInTheDocument();
+
+        screen.debug();
     })
 });
