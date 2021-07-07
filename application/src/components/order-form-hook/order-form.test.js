@@ -7,6 +7,6 @@ describe('Order Form', () => {
     test('renders order form', () => {
         render(<div />);
 
-        screen.debug();
+
     })
 });

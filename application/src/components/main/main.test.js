@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
 
@@ -13,8 +13,7 @@ describe('Main page', () => {
             </MemoryRouter>
         );
         
+        // there is a button for logging in
         expect(screen.getByRole('button')).toBeInTheDocument();
-
-        screen.debug();
     })
 });
