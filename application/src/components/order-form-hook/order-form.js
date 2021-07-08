@@ -15,8 +15,7 @@ export default function OrderForm(props) {
 
     const auth = useSelector((state) => state.auth);
 
-    const submitOrder = (event) => {
-        event.preventDefault();
+    const submitOrder = () => {
         if (orderItem === "") return;
         fetch(ADD_ORDER_URL, {
             method: 'POST',
@@ -59,7 +58,7 @@ export default function OrderForm(props) {
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    <button type="button" className="order-btn" onClick={(event) => submitOrder(event)}>Order It!</button>
+                    <button type="button" className="order-btn" onClick={() => submitOrder()}>Order It!</button>
                 </form>
             </div>
         </Template>
