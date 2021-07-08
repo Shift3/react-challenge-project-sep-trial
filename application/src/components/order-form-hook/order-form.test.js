@@ -16,6 +16,5 @@ describe('Order Form', () => {
             </Provider>
         );
 
-        screen.debug();
     })
 });
