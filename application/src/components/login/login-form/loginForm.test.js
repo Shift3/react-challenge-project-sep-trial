@@ -5,11 +5,6 @@ import store from '../../../redux/store';
 
 import LoginForm from './loginForm';
 
-// const onLogin = () => {
-//     console.log('i fired!');
-// }
-
-
 describe('Login Form', () => {
     test('form renders', () => {
         render(
