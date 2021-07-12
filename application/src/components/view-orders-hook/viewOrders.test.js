@@ -12,6 +12,5 @@ describe('View Orders', () => {
             </MemoryRouter>
         )
 
-        screen.debug();
     });
 })

@@ -3,7 +3,7 @@ import React from 'react';
 const OrdersList = (props) => {
     const { orders } = props;
     if (!props || !props.orders || !props.orders.length) return (
-        <div class="empty-orders">
+        <div className="empty-orders">
             <h2>There are no orders to display</h2>
         </div>
     );
