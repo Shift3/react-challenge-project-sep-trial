@@ -29,8 +29,8 @@ This is a multi-container docker environment that utilizes Docker to create thre
 
 - Docker
     - For Mac Users: [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
-    - For Windows 10 Pro/Enterprise Users: [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
-    - For Windows 7 or Windows 10 home Users: [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
+    - For Windows 10 Home/Pro/Enterprise Users: [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
+    - For Windows 7 Users: [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
     - For Linux Users (follow link and choose your Distro): [Docker Engine](https://docs.docker.com/engine/install/)
 - Do not have anything running on the required ports (3000 for client, 4000 for server, 27017 for mongo.)
 
