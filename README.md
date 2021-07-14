@@ -37,7 +37,7 @@ This is a multi-container docker environment that utilizes Docker to create thre
 ## Running the project
 
 - After cloning the repo, go into the project's root directory and run `docker-compose up`. The first time running this the server and client will both go through the build process, but this should only happen once.
-- Your connection target on Mac and Linux is `localhost://`. For Windows, you will need to run `docker-machine ip` to find your address to connect to, default is `192.168.99.100:`.
+- Your connection target on Mac and Linux is `localhost://`. For Windows users on Docker Toolbox, you will need to run `docker-machine ip` to find your address to connect to, default is `192.168.99.100:`. You will also need to edit `/application/src/private.js` and replace the `SERVER_IP` export with either the commented out line, or your own.
 - Database can be found at `(target):27017`, server at `(target):4000`, client at `(target):3000`.
 
 ## Development process
