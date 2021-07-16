@@ -13,11 +13,14 @@ echo ${machine}
 case ${machine} in
     Mac)
         echo "Running Mac Startup"
+        docker compose up
         ;;
     Cygwin)
         echo "Running Windows Startup"
+        docker compose -f "./docker-compose.yml" -f "./docker-compose.windows.yml" up
         ;;
     MinGw)
         echo "Running Windows Startup"
+        docker compose -f "./docker-compose.yml" -f "./docker-compose.windows.yml" up
         ;;
 esac
