@@ -29,15 +29,15 @@ This is a multi-container docker environment that utilizes Docker to create thre
 
 - Docker
     - For Mac Users: [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
-    - For Windows 10 Pro/Enterprise Users: [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
-    - For Windows 7 or Windows 10 home Users: [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
+    - For Windows 10 Home/Pro/Enterprise Users: [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
+    - For Windows 7 Users: [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/)
     - For Linux Users (follow link and choose your Distro): [Docker Engine](https://docs.docker.com/engine/install/)
 - Do not have anything running on the required ports (3000 for client, 4000 for server, 27017 for mongo.)
 
 ## Running the project
 
 - After cloning the repo, go into the project's root directory and run `docker-compose up`. The first time running this the server and client will both go through the build process, but this should only happen once.
-- Your connection target on Mac and Linux is `localhost://`. For Windows, you will need to run `docker-machine ip` to find your address to connect to, default is `192.168.99.100:`.
+- Your connection target on Mac and Linux is `localhost://`. For Windows users on Docker Toolbox, you will need to run `docker-machine ip` to find your address to connect to, default is `192.168.99.100:`. You will also need to edit `/application/src/private.js` and replace the `SERVER_IP` export with either the commented out line, or your own.
 - Database can be found at `(target):27017`, server at `(target):4000`, client at `(target):3000`.
 
 ## Development process
