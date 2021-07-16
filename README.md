@@ -36,7 +36,12 @@ This is a multi-container docker environment that utilizes Docker to create thre
 
 ## Running the project
 
-- After cloning the repo, go into the project's root directory and run `docker-compose up` for Mac or `docker-compose -f ./docker-compose.yml -f ./docker-compose.windows-yml up` for Windows. The first time running this the server and client will both go through the build process, but this should only happen once.
+- After cloning the repo, go into the project's root directory. There are two ways to run the project. Docker Desktop on Windows has some outstanding issues with file updating, so by default, the hot reloading features on the server and client will not work. The solution is to enable polling which is more CPU intensive. The two ways to run the app are:
+    - If you have bash installed, running `bash start.sh` will run a script that calls the correct docker command.
+    - If you prefer not to use bash, the correct docker command is:
+      - On Mac: `docker compose up`
+      - On Windows: `docker compose -f ./docker-compose.yml -f ./docker-compose.windows.yml up`
+ - The first time running this the server and client will both go through the build process, but this should only happen once.
 - Your connection target on Mac and Linux is `localhost://`. For Windows users on Docker Toolbox, you will need to run `docker-machine ip` to find your address to connect to, default is `192.168.99.100:`. You will also need to edit `/application/src/private.js` and replace the `SERVER_IP` export with either the commented out line, or your own.
 - Database can be found at `(target):27017`, server at `(target):4000`, client at `(target):3000`.
 
