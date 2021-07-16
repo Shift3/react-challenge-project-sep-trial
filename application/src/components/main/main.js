@@ -1,11 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './main.css';
 
-const mapStateToProps = state => ({
-  temp: state.temp
-});
 
 function Main() {
   return (
@@ -19,4 +15,4 @@ function Main() {
   )
 }
 
-export default connect(mapStateToProps, null)(Main);
+export default Main;

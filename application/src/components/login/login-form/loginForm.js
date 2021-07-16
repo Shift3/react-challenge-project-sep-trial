@@ -29,7 +29,7 @@ class LoginForm extends Component {
       <form>
         <div className="form-group">
           <label htmlFor="inputEmail">Email</label>
-          <input type="text" className="form-control"  placeholder="test@test.com" value={this.state.email} onChange={e => this.onChange('email', e.target.value)}></input>
+          <input type="text" className="form-control" id="inputEmail" placeholder="test@test.com" value={this.state.email} onChange={e => this.onChange('email', e.target.value)}></input>
         </div>
         <div className="form-group">
           <label htmlFor="inputPassword">Password</label>
