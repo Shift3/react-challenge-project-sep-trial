@@ -140,7 +140,7 @@ router.post('/live-mode', async (req, res) => {
     for (i = 0; i < limit; i++) {
       setTimeout(() => { liveUpdate(count, limit); count++; }, i * secsPerUpdate * 1000);
       if (i === limit - 1) {
-        setTimeout(() => console.log('terminating live mode'), i * secsPerUpdate * 1000);
+        setTimeout(() => console.log('Live mode ending after next step...'), i * secsPerUpdate * 1000);
       }
     }
   } catch (error) {
