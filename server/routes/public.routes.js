@@ -130,16 +130,16 @@ router.post('/live-mode', async (req, res) => {
   try {
     // after hitting this endpoint, every 5 seconds an order will either be added or deleted.
     // This will continue for 1 minute
-    console.log('live mode hit');
+    const secsPerUpdate = !req.body || isNaN(req.body.time) ? 5 : req.body.time; 
     
     res.status(200).json({ success: true });
 
     // const delay = ms => new Promise(res => setTimeout(res, ms));
     const limit = 12;
     for (i = 0; i < limit; i++) {
-      setTimeout(liveUpdate, i * 5000);
+      setTimeout(liveUpdate, i * secsPerUpdate * 1000);
       if (i === limit - 1) {
-        setTimeout(() => console.log('terminating live mode'), i * 1000);
+        setTimeout(() => console.log('terminating live mode'), i * secsPerUpdate * 1000);
       }
     }
 
