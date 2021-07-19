@@ -128,13 +128,10 @@ router.delete('/delete-all', async (req, res) => {
 
 router.post('/live-mode', async (req, res) => {
   try {
-    // after hitting this endpoint, every 5 seconds an order will either be added or deleted.
-    // This will continue for 1 minute
     const secsPerUpdate = !req.body || isNaN(req.body.time) ? 5 : req.body.time; 
     
     res.status(200).json({ success: true });
 
-    // const delay = ms => new Promise(res => setTimeout(res, ms));
     const limit = 12;
     let count = 0;
     for (i = 0; i < limit; i++) {
