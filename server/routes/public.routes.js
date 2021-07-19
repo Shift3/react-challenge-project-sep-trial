@@ -126,4 +126,65 @@ router.delete('/delete-all', async (req, res) => {
   }
 });
 
+router.post('/live-mode', async (req, res) => {
+  try {
+    // after hitting this endpoint, every 5 seconds an order will either be added or deleted.
+    // This will continue for 1 minute
+    console.log('live mode hit');
+    
+    res.status(200).json({ success: true });
+
+    // const delay = ms => new Promise(res => setTimeout(res, ms));
+    const limit = 12;
+    for (i = 0; i < limit; i++) {
+      setTimeout(liveUpdate, i * 5000);
+      if (i === limit - 1) {
+        setTimeout(() => console.log('terminating live mode'), i * 1000);
+      }
+    }
+
+    console.log('done');
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json({ success: false, error })
+  }
+  
+})
+
+async function liveUpdate() {
+  const items = ['Live Soup', 'Live Pasta', 'Live Steak'];
+  const rand = Math.random();
+  const orders = await Order.find();
+  if (orders.length < 3) {
+    addRandom();
+  } else if (orders.length > 5) {
+    deleteRandom();
+  } else {
+    rand > 0.5 ? addRandom() : deleteRandom();
+  }
+  
+  async function addRandom() {
+    const orderObj = new Order({
+      order_item: items[Math.floor(Math.random() * 3)],
+      quantity: Math.floor(Math.random() * 5),
+      ordered_by: 'Live updater',
+    });
+  
+    const dbResponse = await orderObj.save();
+    console.log('order added');
+  }
+
+  async function deleteRandom() {
+    const sorted = orders.sort((a, b) => {
+      const aDate = new Date(a.createdAt);
+      const bDate = new Date(b.createdAt);
+      return aDate.getTime() - bDate.getTime(); 
+    });
+    const target = sorted[0]._id;
+    if (!target && target !== 0) return;
+    const deleteResponse = await Order.deleteOne({ _id: target });
+    console.log('deleted order');
+  }
+}
+
 module.exports = router;
