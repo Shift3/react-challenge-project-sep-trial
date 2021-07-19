@@ -136,14 +136,13 @@ router.post('/live-mode', async (req, res) => {
 
     // const delay = ms => new Promise(res => setTimeout(res, ms));
     const limit = 12;
+    let count = 0;
     for (i = 0; i < limit; i++) {
-      setTimeout(liveUpdate, i * secsPerUpdate * 1000);
+      setTimeout(() => { liveUpdate(count, limit); count++; }, i * secsPerUpdate * 1000);
       if (i === limit - 1) {
         setTimeout(() => console.log('terminating live mode'), i * secsPerUpdate * 1000);
       }
     }
-
-    console.log('done');
   } catch (error) {
     console.log('error', error)
     res.status(500).json({ success: false, error })
@@ -151,7 +150,7 @@ router.post('/live-mode', async (req, res) => {
   
 })
 
-async function liveUpdate() {
+async function liveUpdate(index, limit) {
   const items = ['Live Soup', 'Live Pasta', 'Live Steak'];
   const rand = Math.random();
   const orders = await Order.find();
@@ -171,7 +170,7 @@ async function liveUpdate() {
     });
   
     const dbResponse = await orderObj.save();
-    console.log('order added');
+    console.log(`Added Order - Step ${index + 1} of ${limit}`)
   }
 
   async function deleteRandom() {
@@ -183,7 +182,7 @@ async function liveUpdate() {
     const target = sorted[0]._id;
     if (!target && target !== 0) return;
     const deleteResponse = await Order.deleteOne({ _id: target });
-    console.log('deleted order');
+    console.log(`Deleted Order - Step ${index + 1} of ${limit}`)
   }
 }
 
