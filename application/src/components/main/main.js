@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './main.css';
 
 
-function Main() {
+const Main = () => {
   return (
     <div className="main-body">
       <h1>Bruce's Diner Ordering Application</h1>
