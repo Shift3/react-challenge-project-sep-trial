@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-const OrderForm = () => {
+const OrderForm = ({ auth }) => {
 
   const [order_item, setOrder_item] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -25,13 +25,13 @@ const OrderForm = () => {
 
   const submitOrder = (event) => {
     event.preventDefault();
-    if (this.state.order_item === "") return;
+    if (order_item === "") return;
     fetch(ADD_ORDER_URL, {
       method: "POST",
       body: JSON.stringify({
-        order_item: this.state.order_item,
-        quantity: this.state.quantity,
-        ordered_by: this.props.auth.email || "Unknown!",
+        order_item:order_item,
+        quantity: quantity,
+        ordered_by: auth.email || "Unknown!",
       }),
       headers: {
         "Content-Type": "application/json",
