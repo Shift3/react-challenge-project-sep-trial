@@ -4,7 +4,7 @@ This project represents a challenge to test your git flow, programming, and trou
 ## Challenge Instructions
 You will begin by creating a fork of this repository to your own Github account. All work will be completed and reviewed within your own fork. Please do not create a Pull Request (PR) back into this repository.
 
-Once you have created your fork, review the Issues labeled `challenge task` [HERE](https://github.com/Shift3/react-challenge-project-2/issues). Shift3's standard for branching is as follows:
+Once you have created your fork, review the Issues labeled `challenge task` [HERE](https://github.com/Shift3/react-challenge-project-2/issues?q=is%3Aissue+is%3Aopen+label%3A%22challenge+task%22). Shift3's standard for branching is as follows:
 
 - Maintain a `main` and development (`dev`) branch on your fork
 - For each feature/task (Issue), create a new branch based off of your `dev` branch
