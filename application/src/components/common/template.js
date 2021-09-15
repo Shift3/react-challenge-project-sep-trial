@@ -6,7 +6,7 @@ const Template = props => {
     return (
         <div className="bg-layer">
             <div className="fg-layer">
-                <label className="logo">Bruce's Diner</label>
+                <label className="logo">Luigi's Pizzeria</label>
                 <Nav />
                 {props.children}
             </div>

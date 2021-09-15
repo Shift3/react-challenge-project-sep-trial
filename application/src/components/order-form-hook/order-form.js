@@ -40,14 +40,14 @@ export default function OrderForm(props) {
                     <label className="form-label">I'd like to order...</label><br />
                     <select 
                         value={orderItem} 
-                        onChange={(event) => menuItemChosen(event)}
+                        onChange={(e) => {menuItemChosen(e.target)}}
                         className="menu-select"
                     >
                         <option value="" defaultValue disabled hidden>Lunch menu</option>
                         <option value="Soup of the Day">Soup of the Day</option>
                         <option value="Linguini With White Wine Sauce">Linguini With White Wine Sauce</option>
                         <option value="Eggplant and Mushroom Panini">Eggplant and Mushroom Panini</option>
-                        <option value="Chili Con Carne">Chili Con Carne</option>
+                        <option value="Luigi's Specialty Pizza">Luigi's Specialty Pizza</option>
                     </select><br />
                     <label className="qty-label">Qty:</label>
                     <select value={quantity} onChange={(event) => menuQuantityChosen(event)}>
@@ -58,7 +58,7 @@ export default function OrderForm(props) {
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    <button type="button" className="order-btn" onClick={() => submitOrder()}>Order It!</button>
+                    <button type="button" className="order-btn" onClick={() => {submitOrder()}}>Order It!</button>
                 </form>
             </div>
         </Template>

@@ -11,6 +11,7 @@ const finishLogin = (email, token) => {
     }
 }
 
+//copy and paste into createAsyncThunk
 export const loginUser = (email, password) => {
     return (dispatch) => {
         fetch(`${SERVER_IP}/api/login`, {
