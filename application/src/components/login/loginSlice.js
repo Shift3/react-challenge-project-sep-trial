@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { SERVER_IP } from "../../private";
 
-const fetchUser = createAsyncThunk(
-    'login users',
-    afetch(`${SERVER_IP}/api/login`, {
-        method: 'POST',
+
+export const fetchUser = createAsyncThunk(
+    'loginUsersStatus',
+    async ({email, password}, thunkAPI) => fetch(`${SERVER_IP}/api/login`, {
+        method: "POST",
         body: JSON.stringify({
             email,
             password
@@ -11,15 +13,10 @@ const fetchUser = createAsyncThunk(
         headers: {
             'Content-Type': 'application/json'
         },
-    }).then(response => response.json())
+    } ).then(response => response.json())
     .then(response => {
         if (response.success) {
-            return{
-                payload:{
-                    email: response.email,
-                    token: response.token,
-                }
-            }
+           return response
         }
     })
   )
@@ -30,27 +27,18 @@ const fetchUser = createAsyncThunk(
 export const loginSlice = createSlice({
     name: "login",
     initialState: {
-        email: null,
-        token: null,
-    },
-
-    reducers: {
-        loginUser: (state, action) => {
-            state.email = action.payload.email;
-            state.token = 1;
-        }
+        email: "",
+        token: "",
     },
 
     extraReducers: (builder) => {
         builder.addCase(fetchUser.fulfilled, (state, action) => {
             state.email = action.payload.email;
-            state.email = action.payload.token;
+            state.token = action.payload.token;
         })
     }
 
 });
 
-export const { loginUser } =
-loginSlice.actions;
 
 export default loginSlice.reducer;

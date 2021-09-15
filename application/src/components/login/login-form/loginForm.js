@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { loginUser } from "../../../redux/actions/authActions";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../loginSlice";
 
-const mapActionsToProps = (dispatch) => ({
-  commenceLogin(email, password) {
-    dispatch(loginUser(email, password));
-  },
-});
-
-const LoginForm = ({ commenceLogin, onLogin }) => {
+const LoginForm = ({onLogin}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const login = (e) => {
     e.preventDefault();
-    commenceLogin(email, password);
+    dispatch(fetchUser({email, password}));
     onLogin();
   };
 
@@ -67,4 +63,4 @@ const LoginForm = ({ commenceLogin, onLogin }) => {
   );
 };
 
-export default connect(null, mapActionsToProps)(LoginForm);
+export default LoginForm;

@@ -10,7 +10,7 @@ export default function OrderForm(props) {
   const [orderItem, setOrderItem] = useState("");
   const [quantity, setQuantity] = useState("1");
 
-  const auth = useSelector((state) => state.auth);
+  const userInfo = useSelector((state) => state.login);
 
   const submitOrder = () => {
     if (orderItem === "") return;
@@ -19,7 +19,7 @@ export default function OrderForm(props) {
       body: JSON.stringify({
         order_item: orderItem,
         quantity,
-        ordered_by: auth.email || "Unknown!",
+        ordered_by: userInfo.email || "Unknown!",
       }),
       headers: {
         "Content-Type": "application/json",
