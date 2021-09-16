@@ -9,13 +9,9 @@ const OrdersList = (props) => {
       </div>
     );
 
-  const formatTime = (time) => (time < 10 ? "0" : "") + time;
-
-  const getTimeofOrder = (time) => {
-    const hours = time.getHours();
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
-    return `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+  const getTimeofOrder = (orderTime) => {
+    const time = new Date(orderTime);
+    return time.toLocaleTimeString('en-GB');
   };
 
   return orders.map((order) => {
