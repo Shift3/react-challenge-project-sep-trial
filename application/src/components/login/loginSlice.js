@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { SERVER_IP } from "../../private";
 
-export const fetchUser = createAsyncThunk(
-  "loginUsersStatus",
-  async ({ email, password }, thunkAPI) =>
-    fetch(`${SERVER_IP}/api/login`, {
+const performLogin = async ({ email, password }) => {
+  try {
+    const loginResponse = await fetch(`${SERVER_IP}/api/login`, {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -13,14 +12,20 @@ export const fetchUser = createAsyncThunk(
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.success) {
-          return response;
-        }
-      })
-);
+    }).then((response) => response.json());
+
+    if (loginResponse.success) {
+      return loginResponse;
+    } else {
+      return { email: "", token: "" };
+    }
+  } catch (error) {
+    console.error(error);
+    return { email };
+  }
+};
+
+export const fetchUser = createAsyncThunk("loginUsersStatus", performLogin);
 
 export const loginSlice = createSlice({
   name: "login",
