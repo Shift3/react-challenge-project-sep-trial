@@ -52,7 +52,7 @@ const LoginForm = ({onLogin}) => {
       </div>
       <div className="d-flex justify-content-center">
         <button
-          onClick={(e) => login(e)}
+          onClick={(e) => email.length > 6 && password.length > 6 ? login(e): alert("Please Enter Valid Email or Password. Each must be at least 6 characters.")}
           type="submit"
           className="btn btn-primary"
         >
