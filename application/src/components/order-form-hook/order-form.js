@@ -6,11 +6,11 @@ import "./orderForm.css";
 
 const ADD_ORDER_URL = `${SERVER_IP}/api/add-order`;
 
-export default function OrderForm(props) {
+const OrderForm = () => {
   const [orderItem, setOrderItem] = useState("");
   const [quantity, setQuantity] = useState("1");
 
-  const userInfo = useSelector((state) => state.login);
+  const email = useSelector((state) => state.login.email);
 
   const submitOrder = () => {
     if (orderItem === "") return;
@@ -19,7 +19,7 @@ export default function OrderForm(props) {
       body: JSON.stringify({
         order_item: orderItem,
         quantity,
-        ordered_by: userInfo.email || "Unknown!",
+        ordered_by: email,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -78,3 +78,5 @@ export default function OrderForm(props) {
     </Template>
   );
 }
+
+export default OrderForm;
