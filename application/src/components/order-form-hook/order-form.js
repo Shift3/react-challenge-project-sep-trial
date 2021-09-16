@@ -19,7 +19,7 @@ const OrderForm = () => {
       body: JSON.stringify({
         order_item: orderItem,
         quantity,
-        ordered_by: email,
+        ordered_by: email || "Unknown",
       }),
       headers: {
         "Content-Type": "application/json",
