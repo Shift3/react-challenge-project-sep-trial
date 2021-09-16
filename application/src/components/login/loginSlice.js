@@ -33,7 +33,7 @@ export const loginSlice = createSlice({
     logout: (state) => {
       state.email = "";
       state.token = "";
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -46,6 +46,5 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { logout } =
-loginSlice.actions;
+export const { logout } = loginSlice.actions;
 export default loginSlice.reducer;
