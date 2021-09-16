@@ -29,6 +29,13 @@ export const loginSlice = createSlice({
     token: "",
   },
 
+  reducers: {
+    logout: (state) => {
+      state.email = "";
+      state.token = "";
+    },
+  },
+
   extraReducers: (builder) => {
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       if (action.payload) {
@@ -39,4 +46,5 @@ export const loginSlice = createSlice({
   },
 });
 
+export const { logout } = loginSlice.actions;
 export default loginSlice.reducer;
