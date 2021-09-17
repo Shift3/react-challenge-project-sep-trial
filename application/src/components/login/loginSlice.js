@@ -32,12 +32,14 @@ export const loginSlice = createSlice({
   initialState: {
     email: "",
     token: "",
+    isLoggedIn: false,
   },
 
   reducers: {
     logout: (state) => {
       state.email = "";
       state.token = "";
+      state.isLoggedIn = false;
     },
   },
 
@@ -46,6 +48,7 @@ export const loginSlice = createSlice({
       if (action.payload) {
         state.email = action.payload.email;
         state.token = action.payload.token;
+        state.isLoggedIn = true;
       }
     });
   },
