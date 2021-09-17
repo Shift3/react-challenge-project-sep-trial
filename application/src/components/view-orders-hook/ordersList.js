@@ -1,9 +1,8 @@
 import React from "react";
+import { Order } from "./order";
 import { SERVER_IP } from "../../private";
 
 const OrdersList = ({ orders, setOrders }) => {
-
-
   if (!orders || !orders.length)
     return (
       <div className="empty-orders">
@@ -13,7 +12,7 @@ const OrdersList = ({ orders, setOrders }) => {
 
   const getTimeofOrder = (orderTime) => {
     const time = new Date(orderTime);
-    return time.toLocaleTimeString('en-GB');
+    return time.toLocaleTimeString("en-GB");
   };
 
   const deleteOrder = async (orderID) => {
@@ -26,38 +25,43 @@ const OrdersList = ({ orders, setOrders }) => {
         "Content-Type": "application/json",
       },
     }).then((response) => response.json());
-    
   };
 
   const removeOrder = (orderID) => {
     let updatedOrders = [...orders];
-    updatedOrders.splice(updatedOrders.findIndex(order => order._id === orderID), 1);
+    updatedOrders.splice(
+      updatedOrders.findIndex((order) => order._id === orderID),
+      1
+    );
     setOrders(updatedOrders);
-  }
+  };
 
+  const editOrder = async (orderID, quantity, orderItem) => {
+    await fetch(`${SERVER_IP}/api/edit-order`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: orderID,
+        order_item: orderItem,
+        quantity,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((res) => console.log(res));
+  };
 
   return orders.map((order) => {
-    const createdDate = new Date(order.createdAt);
     return (
-      <div className="row view-order-container" key={order._id}>
-        <div className="col-md-4 view-order-left-col p-3">
-          <h2>{order.order_item}</h2>
-          <p>Ordered by: {order.ordered_by || ""}</p>
-        </div>
-        <div className="col-md-4 d-flex view-order-middle-col">
-          <p>Order placed at {getTimeofOrder(createdDate)}</p>
-          <p>Quantity: {order.quantity}</p>
-        </div>
-        <div className="col-md-4 view-order-right-col">
-          <button className="btn btn-success">Edit</button>
-          <button className="btn btn-danger"
-            onClick={()=> {
-              deleteOrder(order._id);
-              removeOrder(order._id);
-            }}
-          >Delete</button>
-        </div>
-      </div>
+      <Order
+        deleteOrder={deleteOrder}
+        editOrder={editOrder}
+        getTimeofOrder={getTimeofOrder}
+        key={order._id}
+        order={order}
+        removeOrder={removeOrder}
+      />
     );
   });
 };
