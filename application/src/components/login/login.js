@@ -10,7 +10,7 @@ const Login = ({ history }) => {
       <div className="d-flex justify-content-center mt-5">
         <LoginForm
           onLogin={() => {
-            history.push("/view-orders");
+            history.push("/order");
           }}
         />
       </div>
