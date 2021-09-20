@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { fetchUser } from "../loginSlice";
 
-const LoginForm = ({onLogin}) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  let history = useHistory();
   const dispatch = useDispatch();
 
   const login = (e) => {
     e.preventDefault();
-    dispatch(fetchUser({email, password}));
-    onLogin();
+    dispatch(fetchUser({ email, password })).then(() =>
+      history.push("/view-orders")
+    );
   };
 
   const onChange = (key, val) => {
@@ -52,7 +54,13 @@ const LoginForm = ({onLogin}) => {
       </div>
       <div className="d-flex justify-content-center">
         <button
-          onClick={(e) => email.length > 6 && password.length > 6 ? login(e): alert("Please Enter Valid Email or Password. Each must be at least 6 characters.")}
+          onClick={(e) =>
+            email.length > 6 && password.length > 6
+              ? login(e)
+              : alert(
+                  "Please Enter Valid Email or Password. Each must be at least 6 characters."
+                )
+          }
           type="submit"
           className="btn btn-primary"
         >
