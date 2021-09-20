@@ -77,6 +77,6 @@ const OrderForm = () => {
       </div>
     </Template>
   );
-}
+};
 
 export default OrderForm;

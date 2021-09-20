@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Edit } from "../edit/edit";
 
-export const Order = ({ deleteOrder, editOrder, getTimeofOrder, order, removeOrder }) => {
+export const Order = ({
+  deleteOrder,
+  editOrder,
+  getTimeofOrder,
+  order,
+  removeOrder,
+}) => {
   const [isEdit, setIsEdit] = useState(false);
-
   const createdDate = new Date(order.createdAt);
 
   return (
@@ -17,7 +22,7 @@ export const Order = ({ deleteOrder, editOrder, getTimeofOrder, order, removeOrd
         <p>Quantity: {order.quantity}</p>
       </div>
       <div className="col-md-4 view-order-right-col">
-        <button className="btn btn-success" onClick={() => setIsEdit(true)}>
+        <button className="btn btn-success" onClick={() => setIsEdit(!isEdit)}>
           Edit
         </button>
         <button
@@ -30,7 +35,9 @@ export const Order = ({ deleteOrder, editOrder, getTimeofOrder, order, removeOrd
           Delete
         </button>
       </div>
-      {isEdit && <Edit editOrder={editOrder} order={order} setIsEdit={setIsEdit}/>}
+      {isEdit && (
+        <Edit editOrder={editOrder} order={order} setIsEdit={setIsEdit} />
+      )}
     </div>
   );
 };
