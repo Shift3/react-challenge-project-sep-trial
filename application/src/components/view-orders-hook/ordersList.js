@@ -2,7 +2,7 @@ import React from "react";
 import { Order } from "./order";
 import { SERVER_IP } from "../../private";
 
-const OrdersList = ({ orders, setOrders }) => {
+const OrdersList = ({ orders, refetch, setOrders }) => {
   if (!orders || !orders.length)
     return (
       <div className="empty-orders">
@@ -36,20 +36,22 @@ const OrdersList = ({ orders, setOrders }) => {
     setOrders(updatedOrders);
   };
 
-  const editOrder = async (orderID, quantity, orderItem) => {
-    await fetch(`${SERVER_IP}/api/edit-order`, {
+  const editOrder = async (orderID, quantity, orderItem, editedBy) => {
+    const editResponse = await fetch(`${SERVER_IP}/api/edit-order`, {
       method: "POST",
       body: JSON.stringify({
         id: orderID,
         order_item: orderItem,
         quantity,
+        ordered_by: editedBy,
       }),
       headers: {
         "Content-Type": "application/json",
       },
-    })
-      .then((response) => response.json())
-      .then((res) => console.log(res));
+    }).then((res) => res.json());
+    if(editResponse.success){
+      await refetch();
+    }
   };
 
   return orders.map((order) => {
