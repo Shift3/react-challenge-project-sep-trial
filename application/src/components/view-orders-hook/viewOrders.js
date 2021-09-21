@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Template } from "../../components";
+import { Template } from "..";
 import { SERVER_IP } from "../../private";
-import OrdersList from "./ordersList";
+import OrdersList from "./OrdersList";
 import "./viewOrders.css";
 
 export default function ViewOrders(props) {

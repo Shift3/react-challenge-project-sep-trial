@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "../../components";
+import { Nav } from "..";
 import { useSelector } from "react-redux";
 import "./template.css";
 

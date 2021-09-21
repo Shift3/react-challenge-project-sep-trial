@@ -1,5 +1,5 @@
 import React from "react";
-import { Order } from "./order";
+import { Order } from "./Order";
 import { SERVER_IP } from "../../private";
 
 const OrdersList = ({ orders, refetch, setOrders }) => {

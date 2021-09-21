@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Template } from "../../components";
+import { Template } from "..";
 import { SERVER_IP } from "../../private";
 import "./orderForm.css";
 
