@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Template } from "../../components";
+import { Template } from "..";
 import { SERVER_IP } from "../../private";
 import "./orderForm.css";
 
 const ADD_ORDER_URL = `${SERVER_IP}/api/add-order`;
 
-export default function OrderForm(props) {
+const OrderForm = () => {
   const [orderItem, setOrderItem] = useState("");
   const [quantity, setQuantity] = useState("1");
 
-  const auth = useSelector((state) => state.auth);
+  const email = useSelector((state) => state.login.email);
 
   const submitOrder = () => {
     if (orderItem === "") return;
@@ -19,7 +19,7 @@ export default function OrderForm(props) {
       body: JSON.stringify({
         order_item: orderItem,
         quantity,
-        ordered_by: auth.email || "Unknown!",
+        ordered_by: email || "Unknown",
       }),
       headers: {
         "Content-Type": "application/json",
@@ -77,4 +77,6 @@ export default function OrderForm(props) {
       </div>
     </Template>
   );
-}
+};
+
+export default OrderForm;

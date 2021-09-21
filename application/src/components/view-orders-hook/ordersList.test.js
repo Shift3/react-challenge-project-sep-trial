@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import OrdersList from './ordersList';
+import OrdersList from './OrdersList';
 
 describe('Orders List', () => {
     test('renders with no prop', () => {

@@ -22,3 +22,8 @@
     text-decoration: underline;
     text-decoration-color: #A43F3F;
 }
+
+.user-email{
+    padding: .5rem;
+    font-weight: 600;
+}

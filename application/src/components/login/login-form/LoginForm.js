@@ -1,34 +1,19 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { loginUser } from "../../../redux/actions/authActions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
+import { fetchUser } from "../loginSlice";
 
-const mapActionsToProps = (dispatch) => ({
-  commenceLogin(email, password) {
-    dispatch(loginUser(email, password));
-  },
-});
-
-const LoginForm = ({ commenceLogin, onLogin }) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let history = useHistory();
+  const dispatch = useDispatch();
 
   const login = (e) => {
     e.preventDefault();
-    commenceLogin(email, password);
-    onLogin();
-  };
-
-  const onChange = (key, val) => {
-    switch (key) {
-      case "email":
-        setEmail(val);
-        break;
-      case "password":
-        setPassword(val);
-        break;
-      default:
-        break;
-    }
+    dispatch(fetchUser({ email, password })).then(() =>
+      history.push("/view-orders")
+    );
   };
 
   return (
@@ -41,7 +26,7 @@ const LoginForm = ({ commenceLogin, onLogin }) => {
           id="inputEmail"
           placeholder="test@test.com"
           value={email}
-          onChange={(e) => onChange("email", e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         ></input>
       </div>
       <div className="form-group">
@@ -51,12 +36,18 @@ const LoginForm = ({ commenceLogin, onLogin }) => {
           className="form-control"
           id="inputPassword"
           value={password}
-          onChange={(e) => onChange("password", e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         ></input>
       </div>
       <div className="d-flex justify-content-center">
         <button
-          onClick={(e) => login(e)}
+          onClick={(e) =>
+            email.length > 6 && password.length > 6
+              ? login(e)
+              : alert(
+                  "Please Enter Valid Email or Password. Each must be at least 6 characters."
+                )
+          }
           type="submit"
           className="btn btn-primary"
         >
@@ -67,4 +58,4 @@ const LoginForm = ({ commenceLogin, onLogin }) => {
   );
 };
 
-export default connect(null, mapActionsToProps)(LoginForm);
+export default LoginForm;
