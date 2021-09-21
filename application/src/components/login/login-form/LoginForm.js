@@ -16,19 +16,6 @@ const LoginForm = () => {
     );
   };
 
-  const onChange = (key, val) => {
-    switch (key) {
-      case "email":
-        setEmail(val);
-        break;
-      case "password":
-        setPassword(val);
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <form>
       <div className="form-group">
@@ -39,7 +26,7 @@ const LoginForm = () => {
           id="inputEmail"
           placeholder="test@test.com"
           value={email}
-          onChange={(e) => onChange("email", e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         ></input>
       </div>
       <div className="form-group">
@@ -49,7 +36,7 @@ const LoginForm = () => {
           className="form-control"
           id="inputPassword"
           value={password}
-          onChange={(e) => onChange("password", e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         ></input>
       </div>
       <div className="d-flex justify-content-center">
