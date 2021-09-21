@@ -1,8 +1,8 @@
-import Login from './login/login';
+import Login from './login/Login';
 import Main from './main/main';
 import Nav from './nav/nav';
-import OrderForm from './order-form-hook/order-form';
-import Template from './common/template';
-import ViewOrders from './view-orders-hook/viewOrders';
+import OrderForm from './order-form-hook/OrderForm';
+import Template from './common/Template';
+import ViewOrders from './view-orders-hook/ViewOrders';
 
 export { Login, OrderForm, Main, Nav, Template, ViewOrders,  };

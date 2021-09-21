@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Edit } from "../edit/edit";
+import { Edit } from "../edit/Edit";
 
 export const Order = ({
   deleteOrder,
