@@ -1,9 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import loginSlice from "../components/login/loginSlice";
 
-export const store = configureStore({
+const persistConfig = {
+  key: 'auth',
+  storage,
+}
+
+const persistedLogin = persistReducer(persistConfig, loginSlice);
+
+ const store = configureStore({
   reducer: {
-    login: loginSlice,
+    login: persistedLogin,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -11,3 +20,7 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 });
+
+const persistor = persistStore(store);
+
+export {store, persistor};
