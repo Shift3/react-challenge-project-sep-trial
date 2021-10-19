@@ -10,8 +10,8 @@ export default function OrderForm(props) {
     const [orderItem, setOrderItem] = useState("");
     const [quantity, setQuantity] = useState("1");
 
-    const menuItemChosen = (event) => setOrderItem(event.value);
-    const menuQuantityChosen = (event) => setQuantity(event.value);
+    const menuItemChosen = (event) => setOrderItem(event.target.value);
+    const menuQuantityChosen = (event) => setQuantity(event.target.value);
 
     const auth = useSelector((state) => state.auth);
 
@@ -58,7 +58,7 @@ export default function OrderForm(props) {
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    <button type="button" className="order-btn" onClick={() => submitOrder()}>Order It!</button>
+                    <button type="button" className="order-btn" onClick={(setOrderItem) => submitOrder()}>Order It!</button>
                 </form>
             </div>
         </Template>
