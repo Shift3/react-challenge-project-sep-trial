@@ -8,8 +8,8 @@ const OrdersList = props => {
 				<h2>There are no orders to display</h2>
 			</div>
 		);
-	const formatDate = dt => {
-		const dateObject = new Date(dt);
+	const formatDate = () => {
+		const dateObject = new Date();
 		const hour = dateObject.getHours();
 		const minute =
 			dateObject.getMinutes() < 10
