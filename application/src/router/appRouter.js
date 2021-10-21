@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Main, Login, OrderFormHook, ViewOrdersHook } from '../components';
-import GuardedRoute from '../components/login/GuardedRoute';
+import { GuardedRoute } from '../components/login/GuardedRoute'
 
 const AppRouter = props => {
   return (
