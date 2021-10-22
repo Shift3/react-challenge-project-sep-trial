@@ -11,7 +11,7 @@ const Login = props => {
       <h1 className='text-center'>Login Screen</h1>
       <div className='d-flex justify-content-center mt-5'>
         <LoginForm
-          onLogin={token ? props.history.push('/view-orders') : null}
+          onClick={token ? props.history.push('/view-orders') : null}
         />
       </div>
     </div>
